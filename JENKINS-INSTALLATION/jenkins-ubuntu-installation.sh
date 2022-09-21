@@ -1,8 +1,8 @@
 
-# Jenkins Installation And Setup In AWS EC2 ubuntu Instance.
+# Jenkins Installation And Setup In AWS EC2 ubuntu 22.04 Instance.
 # Installation of Java
 sudo apt update   # Update the repositories
-sudo apt install default-jre
+sudo apt install default-jre #This installs Java 11 whcih is the default on Ubuntu 22.04
 java -version
 
 #installation of jenkins via package manager
