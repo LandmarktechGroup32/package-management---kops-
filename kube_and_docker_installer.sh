@@ -21,6 +21,10 @@ apt-get update -y
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
+modprobe br_netfilter
+sysctl -p
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+
 # Install And Enable Docker
 
 apt install docker.io -y
