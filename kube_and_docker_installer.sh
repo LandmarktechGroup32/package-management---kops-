@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # First, login as ‘root’ user because the following set of commands need to be executed with ‘sudo’ permissions.
 
 sudo su -
