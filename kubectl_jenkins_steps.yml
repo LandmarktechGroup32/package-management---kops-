@@ -1,0 +1,26 @@
+Steps to install kubectl on Jenkins server for K8S cluster deployment.
+kubectl will be the CLI to interface with your K8S master
+
+Install kubectl on Jenkins server:
+  - apt-get update -y && apt-get install -y apt-transport-https
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+  - cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+        deb https://apt.kubernetes.io/ kubernetes-xenial main
+        EOF
+  - apt-get update -y
+
+Switch to Jenkins user:
+  - sudo -i -u jenkins
+  - cd ~ 
+
+Now make a .kube directoy and put a config file:
+  - mkdir .kube
+  - vi .kube/config
+  - Now in a separate shell session, login into your K8S master server and copy the config file. 
+  - use the following command to paste the file content to the screen then copy all the contents manually:
+    - cat .kube/config
+  - once copied, go back to your Jenkins session with the newly opened .kube/config and paste the content there.
+  - save and close
+
+To confirm if your Jenkins server's kubectl is connected to your K8S master use the following command:
+  - kubectl get pods --all-namespaces
