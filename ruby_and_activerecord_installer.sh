@@ -6,5 +6,5 @@ source /home/ec2-user/.rvm/scripts/rvm
 echo `rvm --version` is now installed
 rvm install 2.6.3
 echo `ruby --version` is now installed
-gem install activerecord -v 5.2.3
 sudo yum install postgresql-devel
+gem install activerecord -v 5.2.3
