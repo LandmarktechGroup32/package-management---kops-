@@ -9,3 +9,4 @@ rvm install 2.6.3
 echo `ruby --version` is now installed
 sudo yum install postgresql-devel -y
 gem install activerecord -v 5.2.3
+gem install pg -v 0.1.8
