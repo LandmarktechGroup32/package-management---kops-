@@ -11,6 +11,12 @@ curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s htt
 chmod +x kops
 sudo mv kops /usr/local/bin/kops
 
+#Install kubectl
+curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+
 aws s3 mb s3://shifu.k8s.local
 echo export NAME=shifu.k8s.local >> .bashrc
 echo export KOPS_STATE_STORE=s3://shifu.k8s.local >> .bashrc
