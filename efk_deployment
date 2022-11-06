@@ -1,0 +1,32 @@
+#create an EFK NAMESPACE if it doesn't exists in your cluster
+#kubectl create ns efk
+
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+helm repo add elastic https://helm.elastic.co
+
+#edit replica and masternodes values to 1
+helm show values elastic/elasticsearch >> elasticsearch.values
+vi elasticsearch.values 
+
+#Install elastic search
+helm install elasticsearch elastic/elasticsearch -f elasticsearch.values -n efk
+
+#Check 
+kubectl get all -n efk
+
+#change the service type in kibana values to from ClusterIP to LoadBalancer (if using KOPS or EKS/AKS) or NodePort if your cluster was configured using kubeadm
+helm show values elastic/kibana >> kibana.values
+vi kibana.values
+helm install kibana elastic/kibana -f kibana.values -n efk
+
+#check
+kubectl get all -n efk
+
+#INSTALL FILEBEAT
+helm install filebeat elastic/filebeat -n efk
+
+kubectl get all -n efk
+#Connect to your efk stack using the loadbalancer and the port specified in the last command 
+
+#Try a springboot app backed by mongodb
+#https://raw.githubusercontent.com/MithunTechnologiesDevOps/Kubernates-Manifests/master/SpringBoot-Mongo-DynamicPV.yml
