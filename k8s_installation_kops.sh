@@ -17,16 +17,16 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
 
-aws s3 mb s3://shifu.k8s.local
-echo export NAME=shifu.k8s.local >> .bashrc
-echo export KOPS_STATE_STORE=s3://shifu.k8s.local >> .bashrc
+aws s3 mb s3://mayowa.k8s.local
+echo export NAME=mayowa.k8s.local >> .bashrc
+echo export KOPS_STATE_STORE=s3://mayowa.k8s.local >> .bashrc
 source .bashrc
 
 yes '' | ssh-keygen -N ''
 
 kops create cluster --zones ca-central-1a --networking calico --master-size t3.medium --master-count 1 --node-size t3.medium --node-count=2 ${NAME}
 kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
-kops update cluster --name shifu.k8s.local --yes --admin
+kops update cluster --name mayowa.k8s.local --yes --admin
 kops validate cluster
 kubectl get nodes
 
